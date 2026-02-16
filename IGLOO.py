@@ -309,7 +309,7 @@ class IGLOO:
                   
             
         #interpolate the data to fix samplerate
-        xi = np.linspace(0,self.walkDur,self.walkDur*self.sps) # time vector
+        xi = np.linspace(0,self.walkDur,int(self.walkDur*self.sps)) # time vector
         pos = np.interp(xi,self.tempTrace[:,0],self.tempTrace[:,1]) # positions
         aT = np.interp(xi,self.tempTrace[:,0],self.tempTrace[:,2]) # ambient Temperature
         dT = np.interp(xi,self.tempTrace[:,0],self.tempTrace[:,3]) # animal Temperature
