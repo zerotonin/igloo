@@ -357,7 +357,7 @@ class IGLOO:
         """   
         
         # number of bins in the histogran
-        binNum =self.gradientExt[1]-self.gradientExt[0]
+        binNum =int(self.gradientExt[1]-self.gradientExt[0])
         #shortHand
         flyPop = self.flyPop[1]
         # number of animals simulated
