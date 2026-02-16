@@ -333,7 +333,7 @@ class IGLOO:
         # preallocate output variable
         self.flyPop = np.zeros((int(self.walkDur*self.sps),3,flyN))
         # simulate all flys
-        for flyI in tqdm(xrange(0,flyN)):
+        for flyI in tqdm(range(0,flyN)):
             self.simulateSingleFly()
             self.flyPop[:,:,flyI] = self.tempTrace[:,1:4]
             # plot if needed
