@@ -826,3 +826,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#Example command to run: python weta_igloo_correction.py     --base_dir /home/geuba03p/weta_project/weta_videos_cropped     --n_sim 10000 --walk_dur 3600
+#Example env: conda activate deer_project_2
