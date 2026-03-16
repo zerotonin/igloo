@@ -35,7 +35,7 @@ The original IGLOO was parameterised entirely for D. melanogaster:
 The problem
 -----------
 In our weta thermal preference experiments, three species of Hemideina
-tree weta are recorded on an 800 mm thermal gradient:
+tree weta are recorded on a 555 mm thermal gradient:
 
     H. crassidens  (Wellington tree weta)   — body length ~65 mm
     H. maori       (mountain stone weta)    — body length ~60 mm
@@ -48,13 +48,13 @@ Body lengths are from the literature:
     H. thoracica:  up to 40 mm (White 1846; Wikipedia)
 
 The previous version of this script ran IGLOO with a single hardcoded
-gradient_dist = 600 mm (or 800 mm) for all species, using the Drosophila
+gradient_dist = 600 mm (or 555 mm) for all species, using the Drosophila
 body cylinder without modification. This is incorrect for two reasons:
 
 1. GRADIENT-TO-BODY-SIZE RATIO:
    A 2 mm Drosophila on a 50 mm gradient traverses 25 body-lengths of
-   temperature space. A 60 mm H. maori on an 800 mm gradient traverses
-   only 800/60 = 13.3 body-lengths. The simulated fly in IGLOO must
+   temperature space. A 60 mm H. maori on a 555 mm gradient traverses
+   only 555/60 = 9.25 body-lengths. The simulated fly in IGLOO must
    experience the same body-length ratio as the real weta, otherwise the
    probability of random-walking out of the cold zone is wrong.
 
@@ -62,9 +62,9 @@ body cylinder without modification. This is incorrect for two reasons:
 
        simulated_gradient = DROSO_BODY_MM * (REAL_GRADIENT / weta_body_mm)
 
-   For H. maori:      2 * (800 / 60)  = 26.7 mm
-   For H. crassidens: 2 * (800 / 65)  = 24.6 mm
-   For H. thoracica:  2 * (800 / 40)  = 40.0 mm
+   For H. maori:      2 * (555 / 60)  = 18.5 mm
+   For H. crassidens: 2 * (555 / 65)  = 17.1 mm
+   For H. thoracica:  2 * (555 / 40)  = 27.8 mm
 
    A shorter simulated gradient means the cold end is proportionally
    closer, making cold-trapping MORE severe in the null model. This is
@@ -143,7 +143,7 @@ Important caveats
   underestimation of distance travelled, applied uniformly across
   temperatures, so the spatial null distribution is minimally affected.
 
-- The --real_gradient_mm flag allows overriding the assumed 800 mm
+- The --real_gradient_mm flag allows overriding the assumed 555 mm
   gradient length if your experimental setup differs.
 
 Usage
@@ -199,7 +199,7 @@ DROSO_MASS_MG       = 1.57      # mass of water cylinder [mg]
 DROSO_J_TO_DEGC     = 152.23    # °C per Joule for the Drosophila cylinder
 
 # Real experimental gradient length for weta [mm]
-REAL_GRADIENT_MM = 800.0
+REAL_GRADIENT_MM = 555.0
 
 # Weta body lengths [mm] — literature values
 # H. maori:      ~60 mm (Wikipedia; up to 80 mm per Jamieson 2002)
@@ -734,8 +734,8 @@ def main():
                         help="Samples per second (for output resampling)")
     parser.add_argument("--use_gpu", action="store_true",
                         help="Use GPU via cupy (requires cupy + CUDA)")
-    parser.add_argument("--real_gradient_mm", type=float, default=800.0,
-                        help="Real experimental gradient length in mm (default: 800)")
+    parser.add_argument("--real_gradient_mm", type=float, default=555.0,
+                        help="Real experimental gradient length in mm (default: 555)")
 
     args = parser.parse_args()
 
